@@ -74,12 +74,8 @@
     padding-top:18px; padding-bottom:18px;
   }
   .brand{display:flex; align-items:center; gap:12px;}
-  .mark{
-    width:34px; height:34px; border:1.5px solid var(--ink);
-    display:flex; align-items:center; justify-content:center;
-    font-family:'Fraunces', serif; font-size:1rem; letter-spacing:-0.05em;
-  }
-  .mark span:last-child{display:inline-block; transform:scaleX(-1);}
+  .mark{width:36px; height:36px; display:block; color:var(--ink);}
+  .mark svg{width:100%; height:100%; display:block;}
   .wordmark{
     font-family:'Fraunces', serif; font-size:1.05rem; letter-spacing:0.02em;
   }
@@ -100,29 +96,11 @@
   .btn-ghost:hover{background:var(--ink); color:var(--cream);}
 
   /* Hero */
-  .hero{padding:90px 0 70px;}
-  .hero-grid{
-    display:grid; grid-template-columns:1.1fr 0.9fr; gap:64px; align-items:center;
-  }
+  .hero{padding:100px 0 90px;}
+  .hero-grid{max-width:760px;}
   .hero h1{font-size:clamp(2.6rem, 5vw, 4.2rem); margin-bottom:26px;}
   .hero p.lead{font-size:1.12rem; color:var(--ink-soft); max-width:46ch; margin-bottom:36px;}
   .hero-ctas{display:flex; gap:16px; flex-wrap:wrap;}
-
-  .hero-visual{
-    display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr; gap:10px;
-    aspect-ratio:1/1;
-  }
-  .tile{border-radius:var(--radius); display:flex; align-items:center; justify-content:center; text-align:center; padding:20px;}
-  .tile.ink{background:var(--ink); color:var(--cream);}
-  .tile.blush{background:var(--blush); color:var(--white);}
-  .tile.tan{background:var(--tan); color:var(--white);}
-  .tile.coral{background:var(--coral); color:var(--white);}
-  .tile.photo{
-    background:repeating-linear-gradient(135deg, var(--cream-deep), var(--cream-deep) 12px, var(--cream-soft) 12px, var(--cream-soft) 24px);
-    color:var(--ink-soft); font-size:0.72rem; letter-spacing:0.08em; text-transform:uppercase;
-    border:1px dashed var(--tan);
-  }
-  .tile .serif{font-size:1.4rem;}
 
   /* Story */
   .story-text{
@@ -141,9 +119,7 @@
     max-width:700px; margin:0 auto 46px;
   }
   .placeholder-note strong{color:var(--ink);}
-  .steps{display:grid; grid-template-columns:repeat(4,1fr); gap:20px; max-width:1000px; margin:0 auto;}
-  .step{background:var(--white); border:1px solid var(--line); padding:26px 20px; border-radius:var(--radius); text-align:left;}
-  .step .num{font-family:'Fraunces', serif; font-size:1.5rem; color:var(--coral); margin-bottom:10px; display:block;}
+  .placeholder-note.standalone{margin-bottom:0;}
 
   /* Testimonials */
   .testimonial-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
@@ -162,11 +138,11 @@
   .offer-card p{color:var(--ink-soft); margin-bottom:28px; flex-grow:1;}
 
   /* Founder */
-  .founder-grid{display:grid; grid-template-columns:0.8fr 1.2fr; gap:64px; align-items:start;}
+  .founder-grid{display:grid; grid-template-columns:220px 1fr; gap:48px; align-items:start;}
   .founder-photo{
-    aspect-ratio:4/5; background:repeating-linear-gradient(135deg, var(--cream-deep), var(--cream-deep) 12px, var(--cream-soft) 12px, var(--cream-soft) 24px);
+    width:220px; aspect-ratio:4/5; background:repeating-linear-gradient(135deg, var(--cream-deep), var(--cream-deep) 12px, var(--cream-soft) 12px, var(--cream-soft) 24px);
     border:2px solid var(--coral); display:flex; align-items:center; justify-content:center;
-    color:var(--ink-soft); font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; text-align:center; padding:20px;
+    color:var(--ink-soft); font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; text-align:center; padding:16px;
   }
   .founder-body p{margin-bottom:1.1em; color:var(--ink-soft);}
   .founder-body h3{margin-bottom:18px;}
@@ -190,14 +166,10 @@
 
   footer{padding:34px 0; font-size:0.8rem; color:var(--ink-soft); display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;}
 
-  @media (max-width: 960px){
-    .steps{grid-template-columns:repeat(2,1fr);}
-  }
   @media (max-width: 860px){
     .hero-grid, .founder-grid, .contact-grid{grid-template-columns:1fr;}
-    .hero-visual{order:-1;}
+    .founder-photo{margin:0 auto 8px;}
     .offer-grid{grid-template-columns:1fr;}
-    .steps{grid-template-columns:1fr;}
     .testimonial-grid{grid-template-columns:1fr;}
     section{padding:70px 0;}
     .nav-links{
@@ -218,7 +190,14 @@
 <header>
   <nav class="wrap">
     <a href="#top" class="brand">
-      <span class="mark"><span>L</span><span>L</span></span>
+      <span class="mark">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="4" y="4" width="92" height="92" stroke="currentColor" stroke-width="5"/>
+          <rect x="11" y="11" width="78" height="78" stroke="currentColor" stroke-width="2"/>
+          <path d="M32,22 L32,55 L75,55" stroke="currentColor" stroke-width="7" stroke-linecap="square"/>
+          <path d="M58,22 L58,80 L80,80" stroke="currentColor" stroke-width="7" stroke-linecap="square"/>
+        </svg>
+      </span>
       <span class="wordmark">The Leap Lab</span>
     </a>
     <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
@@ -248,12 +227,6 @@
           <a href="#story" class="btn btn-ghost">How it works</a>
         </div>
       </div>
-      <div class="hero-visual">
-        <div class="tile ink"><span class="serif">The<br>Leap<br>Lab</span></div>
-        <div class="tile photo">Photo —<br>to be added</div>
-        <div class="tile blush">&nbsp;</div>
-        <div class="tile coral">&nbsp;</div>
-      </div>
     </div>
   </section>
 
@@ -274,18 +247,9 @@
   <section id="method" class="section-alt">
     <div class="wrap" style="text-align:center;">
       <span class="eyebrow">The Method</span>
-      <h2 style="font-size:2.1rem; margin-bottom:30px;">A 7-step framework</h2>
-      <div class="placeholder-note">
-        <strong>Platzhalter:</strong> Jenny entwickelt die eigene 7-Stufen-Methode gerade mit Kolleginnen. Sobald Name und Inhalte der Stufen feststehen, ersetzen wir die sieben Karten unten mit den echten Titeln und Kurzbeschreibungen.
-      </div>
-      <div class="steps">
-        <div class="step"><span class="num">01</span>Step title</div>
-        <div class="step"><span class="num">02</span>Step title</div>
-        <div class="step"><span class="num">03</span>Step title</div>
-        <div class="step"><span class="num">04</span>Step title</div>
-        <div class="step"><span class="num">05</span>Step title</div>
-        <div class="step"><span class="num">06</span>Step title</div>
-        <div class="step"><span class="num">07</span>Step title</div>
+      <h2 style="font-size:2.1rem; margin-bottom:30px;">How we work together</h2>
+      <div class="placeholder-note standalone">
+        <strong>Platzhalter:</strong> Die Methode wird gerade von Jenny sauber ausformuliert. Sobald Inhalt und Struktur feststehen, kommt dieser Bereich rein — bewusst ohne Vorwegnahme von Anzahl oder Aufbau der Schritte.
       </div>
     </div>
   </section>
