@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>The Leap Lab — Coaching for Global Minds</title>
+<meta name="description" content="The Leap Lab is a coaching space for expats and global minds seeking clarity, courage, and transformation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#F4EAD9;
+    --cream-soft:#EDE0C9;
+    --cream-deep:#E4D3B4;
+    --ink:#211C17;
+    --ink-soft:#5B5148;
+    --blush:#CBA089;
+    --tan:#9C7C55;
+    --coral:#FF6B4A;
+    --white:#FFFDF9;
+    --line: rgba(33,28,23,0.14);
+    --radius: 2px;
+    --maxw: 1140px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter', sans-serif;
+    color:var(--ink);
+    background:var(--cream);
+    font-weight:400;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.serif{
+    font-family:'Fraunces', serif;
+    font-weight:400;
+    letter-spacing:0.01em;
+    line-height:1.15;
+  }
+  .eyebrow{
+    font-size:0.72rem;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--tan);
+    font-weight:600;
+    margin-bottom:14px;
+    display:block;
+  }
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 32px;}
+  section{padding:110px 0;}
+  .section-alt{background:var(--cream-soft);}
+
+  /* Prototype banner */
+  .proto-banner{
+    background:var(--ink); color:var(--cream);
+    text-align:center; font-size:0.75rem; letter-spacing:0.08em;
+    padding:8px 12px; text-transform:uppercase; font-weight:500;
+  }
+
+  /* Nav */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(244,234,217,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    padding-top:18px; padding-bottom:18px;
+  }
+  .brand{display:flex; align-items:center; gap:12px;}
+  .mark{
+    width:34px; height:34px; border:1.5px solid var(--ink);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces', serif; font-size:1rem; letter-spacing:-0.05em;
+  }
+  .mark span:last-child{display:inline-block; transform:scaleX(-1);}
+  .wordmark{
+    font-family:'Fraunces', serif; font-size:1.05rem; letter-spacing:0.02em;
+  }
+  .nav-links{display:flex; align-items:center; gap:34px; font-size:0.88rem;}
+  .nav-links a:not(.btn){opacity:0.82; transition:opacity .2s, color .2s;}
+  .nav-links a:not(.btn):hover{opacity:1; color:var(--coral);}
+  .nav-toggle{display:none; background:none; border:none; font-size:1.4rem; cursor:pointer; color:var(--ink);}
+
+  .btn{
+    display:inline-block; padding:13px 26px; font-size:0.82rem;
+    letter-spacing:0.06em; text-transform:uppercase; font-weight:500;
+    border:1px solid var(--ink); border-radius:var(--radius);
+    transition:all .25s ease;
+  }
+  .btn-primary{background:var(--coral); color:var(--white); border-color:var(--coral);}
+  .btn-primary:hover{background:transparent; color:var(--coral);}
+  .btn-ghost{background:transparent; color:var(--ink);}
+  .btn-ghost:hover{background:var(--ink); color:var(--cream);}
+
+  /* Hero */
+  .hero{padding:90px 0 70px;}
+  .hero-grid{
+    display:grid; grid-template-columns:1.1fr 0.9fr; gap:64px; align-items:center;
+  }
+  .hero h1{font-size:clamp(2.6rem, 5vw, 4.2rem); margin-bottom:26px;}
+  .hero p.lead{font-size:1.12rem; color:var(--ink-soft); max-width:46ch; margin-bottom:36px;}
+  .hero-ctas{display:flex; gap:16px; flex-wrap:wrap;}
+
+  .hero-visual{
+    display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr; gap:10px;
+    aspect-ratio:1/1;
+  }
+  .tile{border-radius:var(--radius); display:flex; align-items:center; justify-content:center; text-align:center; padding:20px;}
+  .tile.ink{background:var(--ink); color:var(--cream);}
+  .tile.blush{background:var(--blush); color:var(--white);}
+  .tile.tan{background:var(--tan); color:var(--white);}
+  .tile.coral{background:var(--coral); color:var(--white);}
+  .tile.photo{
+    background:repeating-linear-gradient(135deg, var(--cream-deep), var(--cream-deep) 12px, var(--cream-soft) 12px, var(--cream-soft) 24px);
+    color:var(--ink-soft); font-size:0.72rem; letter-spacing:0.08em; text-transform:uppercase;
+    border:1px dashed var(--tan);
+  }
+  .tile .serif{font-size:1.4rem;}
+
+  /* Story */
+  .story-text{
+    max-width:640px; margin:0 auto; text-align:center;
+    font-family:'Fraunces', serif; font-size:1.4rem; font-style:italic;
+    line-height:1.7; color:var(--ink);
+  }
+  .story-text p{margin-bottom:1.3em;}
+  .story-text p:last-child{margin-bottom:0;}
+  #story .eyebrow{text-align:center;}
+
+  /* Method placeholder */
+  .placeholder-note{
+    border:1px dashed var(--tan); background:var(--white);
+    padding:22px 26px; border-radius:var(--radius); font-size:0.9rem; color:var(--ink-soft);
+    max-width:700px; margin:0 auto 46px;
+  }
+  .placeholder-note strong{color:var(--ink);}
+  .steps{display:grid; grid-template-columns:repeat(4,1fr); gap:20px; max-width:1000px; margin:0 auto;}
+  .step{background:var(--white); border:1px solid var(--line); padding:26px 20px; border-radius:var(--radius); text-align:left;}
+  .step .num{font-family:'Fraunces', serif; font-size:1.5rem; color:var(--coral); margin-bottom:10px; display:block;}
+
+  /* Testimonials */
+  .testimonial-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  .testimonial-card{background:var(--white); border:1px dashed var(--tan); padding:32px 28px; border-radius:var(--radius);}
+  .testimonial-card p.quote{font-family:'Fraunces', serif; font-style:italic; font-size:1.08rem; margin-bottom:18px; color:var(--ink);}
+  .testimonial-card .who{font-size:0.8rem; color:var(--ink-soft); letter-spacing:0.02em;}
+  .testimonial-tag{font-size:0.68rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--tan); margin-bottom:14px; display:block;}
+
+  /* Work with me */
+  .offer-grid{display:grid; grid-template-columns:1fr 1fr; gap:28px;}
+  .offer-card{
+    background:var(--white); border:1px solid var(--line); padding:44px 38px;
+    border-radius:var(--radius); display:flex; flex-direction:column;
+  }
+  .offer-card h3{font-size:1.5rem; margin-bottom:16px;}
+  .offer-card p{color:var(--ink-soft); margin-bottom:28px; flex-grow:1;}
+
+  /* Founder */
+  .founder-grid{display:grid; grid-template-columns:0.8fr 1.2fr; gap:64px; align-items:start;}
+  .founder-photo{
+    aspect-ratio:4/5; background:repeating-linear-gradient(135deg, var(--cream-deep), var(--cream-deep) 12px, var(--cream-soft) 12px, var(--cream-soft) 24px);
+    border:2px solid var(--coral); display:flex; align-items:center; justify-content:center;
+    color:var(--ink-soft); font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; text-align:center; padding:20px;
+  }
+  .founder-body p{margin-bottom:1.1em; color:var(--ink-soft);}
+  .founder-body h3{margin-bottom:18px;}
+  details{margin-top:8px;}
+  details summary{
+    cursor:pointer; font-size:0.85rem; letter-spacing:0.05em; text-transform:uppercase;
+    color:var(--coral); font-weight:600; list-style:none; display:inline-block; border-bottom:1px solid var(--coral); padding-bottom:2px;
+  }
+  details summary::-webkit-details-marker{display:none;}
+  details[open] summary{margin-bottom:16px;}
+
+  /* Contact */
+  #contact{background:var(--ink); color:var(--cream);}
+  #contact .eyebrow{color:var(--blush);}
+  #contact h2{font-size:clamp(2rem, 4vw, 2.8rem); margin-bottom:20px; max-width:16ch;}
+  #contact p{color:rgba(244,234,217,0.78); max-width:50ch; margin-bottom:34px;}
+  .contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start;}
+  .contact-emails{margin-top:30px; font-size:0.95rem;}
+  .contact-emails a{border-bottom:1px solid rgba(244,234,217,0.4); padding-bottom:2px;}
+  .contact-note{margin-top:14px; font-size:0.78rem; color:rgba(244,234,217,0.55);}
+
+  footer{padding:34px 0; font-size:0.8rem; color:var(--ink-soft); display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;}
+
+  @media (max-width: 960px){
+    .steps{grid-template-columns:repeat(2,1fr);}
+  }
+  @media (max-width: 860px){
+    .hero-grid, .founder-grid, .contact-grid{grid-template-columns:1fr;}
+    .hero-visual{order:-1;}
+    .offer-grid{grid-template-columns:1fr;}
+    .steps{grid-template-columns:1fr;}
+    .testimonial-grid{grid-template-columns:1fr;}
+    section{padding:70px 0;}
+    .nav-links{
+      position:fixed; inset:0 0 auto 0; top:63px; background:var(--cream);
+      flex-direction:column; align-items:flex-start; padding:26px 32px; gap:20px;
+      border-bottom:1px solid var(--line);
+      transform:translateY(-130%); transition:transform .3s ease; font-size:1rem;
+    }
+    .nav-links.open{transform:translateY(0);}
+    .nav-toggle{display:block;}
+  }
+</style>
+</head>
+<body>
+
+<div class="proto-banner">Prototype — Feedback Draft · not final content</div>
+
+<header>
+  <nav class="wrap">
+    <a href="#top" class="brand">
+      <span class="mark"><span>L</span><span>L</span></span>
+      <span class="wordmark">The Leap Lab</span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
+    <div class="nav-links" id="navLinks">
+      <a href="#story">Story</a>
+      <a href="#method">Method</a>
+      <a href="#work">Work with me</a>
+      <a href="#founder">Founder</a>
+      <a href="#voices">Voices</a>
+      <a href="#contact">Contact</a>
+      <a href="#contact" class="btn btn-ghost">Book a session</a>
+    </div>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Coaching for Global Minds</span>
+        <h1>Leap with clarity.</h1>
+        <p class="lead">You don't need more input. You need clarity. A coaching space for expats and global minds — people who've succeeded by adapting, but long for something more real.</p>
+        <div class="hero-ctas">
+          <a href="#contact" class="btn btn-primary">Book a free consultation</a>
+          <a href="#story" class="btn btn-ghost">How it works</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="tile ink"><span class="serif">The<br>Leap<br>Lab</span></div>
+        <div class="tile photo">Photo —<br>to be added</div>
+        <div class="tile blush">&nbsp;</div>
+        <div class="tile coral">&nbsp;</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STORY -->
+  <section id="story">
+    <div class="wrap">
+      <span class="eyebrow">The Story</span>
+      <div class="story-text">
+        <p>At the beginning, there was a leap — a leap of faith, a leap into something new, a leap that questioned values, beliefs, and belonging. And all of it unfolded across cultures.</p>
+        <p>For that leap, The Lab was born — a place to experiment, to pause, to ask <em>what if?</em></p>
+        <p>Think of a leap like the frog's jump: playful, daring, unexpected — yet always landing somewhere truer, somewhere that resonates more deeply.</p>
+        <p>The Leap Lab became a protected space for exploration — a space where global minds can readjust, realign, and flourish.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- METHOD (placeholder) -->
+  <section id="method" class="section-alt">
+    <div class="wrap" style="text-align:center;">
+      <span class="eyebrow">The Method</span>
+      <h2 style="font-size:2.1rem; margin-bottom:30px;">A 7-step framework</h2>
+      <div class="placeholder-note">
+        <strong>Platzhalter:</strong> Jenny entwickelt die eigene 7-Stufen-Methode gerade mit Kolleginnen. Sobald Name und Inhalte der Stufen feststehen, ersetzen wir die sieben Karten unten mit den echten Titeln und Kurzbeschreibungen.
+      </div>
+      <div class="steps">
+        <div class="step"><span class="num">01</span>Step title</div>
+        <div class="step"><span class="num">02</span>Step title</div>
+        <div class="step"><span class="num">03</span>Step title</div>
+        <div class="step"><span class="num">04</span>Step title</div>
+        <div class="step"><span class="num">05</span>Step title</div>
+        <div class="step"><span class="num">06</span>Step title</div>
+        <div class="step"><span class="num">07</span>Step title</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK WITH ME -->
+  <section id="work">
+    <div class="wrap">
+      <span class="eyebrow">Work With Me</span>
+      <h2 style="font-size:2.1rem; margin-bottom:44px;">Ways to work together</h2>
+      <div class="offer-grid">
+        <div class="offer-card">
+          <h3>Individuals</h3>
+          <p>One-to-one coaching for global minds seeking balance, clarity, and a more authentic way of living and leading — wherever in the world you are.</p>
+          <a href="#contact" class="btn btn-ghost">Book a 1:1 session</a>
+        </div>
+        <div class="offer-card">
+          <h3>Corporates</h3>
+          <p>Coaching support for teams and leaders navigating mobility, relocation, and change — helping global talent thrive, not just adapt.</p>
+          <a href="#contact" class="btn btn-ghost">Request a customized offer</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOUNDER -->
+  <section id="founder" class="section-alt">
+    <div class="wrap founder-grid">
+      <div class="founder-photo">Founder photo —<br>to be added</div>
+      <div class="founder-body">
+        <span class="eyebrow">About the Founder</span>
+        <h3>Hi, I'm Jenny.</h3>
+        <p>I'm a creative brand strategist, ANIMAS-trained transformational coach, and mother.</p>
+        <p>With 20+ years' experience and an international life across Germany, the U.S., China, and Denmark, I help you navigate change with clarity, empathy, and courage at The Leap Lab.</p>
+        <details>
+          <summary>Read the full story</summary>
+          <p>Welcome to The Leap Lab — a space to gain clarity, experiment with new perspectives, and take courageous steps toward transformation. Think of it as a laboratory: a place where you can explore, expand your possibilities, and flourish in your own way.</p>
+          <p>My life — much like my work — has always revolved around growth. Family life continuously reminds me of what truly matters and grounds the work I do with others: helping people navigate change while staying true to themselves.</p>
+          <p>Professionally, I bring more than 20 years of experience as a creative brand strategist and trend &amp; future forecaster. Over the years, I've partnered with leading global clients — among them VW, Munich Re, and, most recently at Audi — exploring questions such as: What might the world look like in 10–15 years? And how can we translate those future scenarios into meaningful, human-centred solutions? This work taught me to combine strategic foresight with practical creativity, grounding visionary thinking in tangible outcomes.</p>
+          <p>But beyond the professional journey, I deeply understand what it means to navigate change. Being half Australian and half German, I have lived a truly international life — studying for three years in the U.S., moving from Berlin to Beijing for work, and later relocating from Germany to Copenhagen for my husband's career. I've experienced the full circle of cultural transitions — the excitement and disorientation of a new culture, the complexity of reverse culture shock, and the joy and challenge of finding belonging in multiple worlds while being far from family and friends. I know what it takes to build a meaningful life abroad — one that feels both grounded and expansive.</p>
+          <p>Alongside this, I have spent over two decades immersed in personal development: meditation and yoga, yoga teacher training with Ramaswami, studies in Vedic astrology, NLP Practitioner certification, therapy, and transformational leadership programs. I am also an ANIMAS-trained transformational coach with ICF accreditation.</p>
+          <p>All of these experiences — professional, personal, and cultural — shape how I hold space today: with clarity, empathy, and courage. At The Leap Lab, this comes together in a coaching space that is both grounded and visionary, where you can explore new perspectives, navigate change with confidence, and take bold steps toward a life that feels expansive, meaningful, and truly your own.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS (placeholder) -->
+  <section id="voices">
+    <div class="wrap" style="text-align:center;">
+      <span class="eyebrow">Voices</span>
+      <h2 style="font-size:2.1rem; margin-bottom:20px;">What clients say</h2>
+      <div class="placeholder-note">
+        <strong>Platzhalter:</strong> Echte Kundenstimmen folgen, sobald Jenny sie eingesammelt hat. Als Coach so gut wie Pflicht für Vertrauen — die drei Karten unten sind Layout-Beispiele, kein echter Inhalt.
+      </div>
+      <div class="testimonial-grid">
+        <div class="testimonial-card">
+          <span class="testimonial-tag">Placeholder</span>
+          <p class="quote">"Platzhalter-Zitat — wird durch eine echte Kundenstimme ersetzt."</p>
+          <div class="who">Name, Rolle / Land</div>
+        </div>
+        <div class="testimonial-card">
+          <span class="testimonial-tag">Placeholder</span>
+          <p class="quote">"Platzhalter-Zitat — wird durch eine echte Kundenstimme ersetzt."</p>
+          <div class="who">Name, Rolle / Land</div>
+        </div>
+        <div class="testimonial-card">
+          <span class="testimonial-tag">Placeholder</span>
+          <p class="quote">"Platzhalter-Zitat — wird durch eine echte Kundenstimme ersetzt."</p>
+          <div class="who">Name, Rolle / Land</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="wrap contact-grid">
+      <div>
+        <span class="eyebrow">Let's Connect</span>
+        <h2>Book a free consultation</h2>
+        <p>Ready to leap? Reach out to talk about where you are and where you'd like to go — no pressure, just clarity.</p>
+        <a href="#" class="btn btn-primary">Book a free consultation</a>
+        <div class="contact-note">Booking-Link (z.B. Acuity/Calendly) folgt — aktuell Platzhalter.</div>
+      </div>
+      <div class="contact-emails">
+        <p>General inquiries<br><a href="mailto:hello@theleaplab.com">hello@theleaplab.com</a></p>
+        <br>
+        <p>Corporate &amp; custom offers<br><a href="mailto:info@theleaplab.com">info@theleaplab.com</a></p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="wrap">
+  <span>© 2026 The Leap Lab</span>
+  <span>Imprint · Privacy Policy</span>
+</footer>
+
+<script>
+  const toggle = document.getElementById('navToggle');
+  const links = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+</script>
+
+</body>
+</html>
