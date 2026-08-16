@@ -34,8 +34,11 @@
     line-height:1.6;
     -webkit-font-smoothing:antialiased;
   }
-  h1,h2,h3,.serif{
+  h1,h2,h3,.serif,.wordmark,.story-text,.intro-questions,.testimonial-card p.quote{
     font-family:'Fraunces', serif;
+    font-optical-sizing:none;
+  }
+  h1,h2,h3,.serif{
     font-weight:400;
     letter-spacing:0.01em;
     line-height:1.15;
@@ -95,12 +98,34 @@
   .btn-ghost{background:transparent; color:var(--ink);}
   .btn-ghost:hover{background:var(--ink); color:var(--cream);}
 
+  /* Intro questions */
+  .intro-q{background:var(--cream-soft);}
+  .intro-q-wrap{position:relative; min-height:54vh;}
+  .intro-questions{
+    position:absolute; margin:0; max-width:56%;
+    font-size:clamp(1.5rem, 3.4vw, 2.5rem); font-style:italic; font-weight:400;
+    color:var(--ink); opacity:0; transition:opacity 1.1s ease;
+  }
+  .intro-questions.visible{opacity:1;}
+  .intro-questions.pos-0{top:8%; left:0; text-align:left;}
+  .intro-questions.pos-1{top:42%; left:50%; transform:translateX(-50%); text-align:center;}
+  .intro-questions.pos-2{top:76%; right:0; left:auto; text-align:right;}
+  @media (max-width: 760px){
+    .intro-q-wrap{min-height:auto; padding:56px 0;}
+    .intro-questions{
+      position:static; max-width:100%; text-align:center !important;
+      transform:none !important; margin:0 auto;
+    }
+  }
+
   /* Hero */
   .hero{padding:100px 0 90px;}
-  .hero-grid{max-width:760px;}
+  .hero-grid{display:grid; grid-template-columns:1.05fr 0.95fr; gap:56px; align-items:center;}
   .hero h1{font-size:clamp(2.6rem, 5vw, 4.2rem); margin-bottom:26px;}
   .hero p.lead{font-size:1.12rem; color:var(--ink-soft); max-width:46ch; margin-bottom:36px;}
   .hero-ctas{display:flex; gap:16px; flex-wrap:wrap;}
+  .hero-photo{aspect-ratio:4/5; overflow:hidden; border-radius:var(--radius);}
+  .hero-photo img{width:100%; height:100%; object-fit:cover; object-position:50% 18%; display:block;}
 
   /* Story */
   .story-text{
@@ -129,21 +154,47 @@
   .testimonial-tag{font-size:0.68rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--tan); margin-bottom:14px; display:block;}
 
   /* Work with me */
-  .offer-grid{display:grid; grid-template-columns:1fr 1fr; gap:28px;}
+  .offer-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-bottom:56px;}
   .offer-card{
-    background:var(--white); border:1px solid var(--line); padding:44px 38px;
+    background:var(--white); border:1px solid var(--line); padding:36px 30px;
     border-radius:var(--radius); display:flex; flex-direction:column;
   }
-  .offer-card h3{font-size:1.5rem; margin-bottom:16px;}
-  .offer-card p{color:var(--ink-soft); margin-bottom:28px; flex-grow:1;}
+  .offer-format{
+    font-size:0.72rem; text-transform:uppercase; letter-spacing:0.06em;
+    color:var(--tan); font-weight:600; margin-bottom:10px; display:block;
+  }
+  .offer-card h3{font-size:1.4rem; margin-bottom:14px;}
+  .offer-card p{color:var(--ink-soft); margin-bottom:20px;}
+  .offer-card .btn{margin-top:auto;}
+  .offer-card details{margin-bottom:20px;}
+  details ul{margin:14px 0 0; padding-left:1.15em;}
+  details li{margin-bottom:6px; color:var(--ink-soft); font-size:0.95rem;}
+  details li::marker{color:var(--coral);}
+  .detail-label{
+    font-size:0.72rem; text-transform:uppercase; letter-spacing:0.06em;
+    color:var(--tan); font-weight:600; margin:16px 0 4px; display:block;
+  }
+  .detail-label:first-child{margin-top:0;}
+
+  .corporate-label{font-size:0.72rem; text-transform:uppercase; letter-spacing:0.22em; color:var(--tan); font-weight:600; margin-bottom:16px; display:block;}
+  .corporate-block{
+    display:grid; grid-template-columns:1fr 1fr; gap:44px;
+    background:var(--white); border:1px solid var(--line); padding:42px 38px; border-radius:var(--radius);
+  }
+  .corporate-text h3{font-size:1.4rem; margin-bottom:14px;}
+  .corporate-text p{color:var(--ink-soft); margin-bottom:24px;}
+  .corporate-lists{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
+  .corporate-lists ul{margin:0; padding-left:1.15em;}
+  .corporate-lists li{margin-bottom:6px; color:var(--ink-soft); font-size:0.95rem;}
+  .corporate-lists li::marker{color:var(--coral);}
 
   /* Founder */
   .founder-grid{display:grid; grid-template-columns:220px 1fr; gap:48px; align-items:start;}
   .founder-photo{
-    width:220px; aspect-ratio:4/5; background:repeating-linear-gradient(135deg, var(--cream-deep), var(--cream-deep) 12px, var(--cream-soft) 12px, var(--cream-soft) 24px);
-    border:2px solid var(--coral); display:flex; align-items:center; justify-content:center;
-    color:var(--ink-soft); font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; text-align:center; padding:16px;
+    width:220px; aspect-ratio:4/5; overflow:hidden;
+    border:2px solid var(--coral); border-radius:var(--radius);
   }
+  .founder-photo img{width:100%; height:100%; object-fit:cover; object-position:50% 25%; display:block;}
   .founder-body p{margin-bottom:1.1em; color:var(--ink-soft);}
   .founder-body h3{margin-bottom:18px;}
   details{margin-top:8px;}
@@ -164,13 +215,23 @@
   .contact-emails a{border-bottom:1px solid rgba(244,234,217,0.4); padding-bottom:2px;}
   .contact-note{margin-top:14px; font-size:0.78rem; color:rgba(244,234,217,0.55);}
 
+  /* Credentials */
+  .badges-row{display:flex; align-items:center; justify-content:center; gap:52px; flex-wrap:wrap;}
+  .badge-strip{height:140px; width:auto;}
+  .badge-seal{height:130px; width:auto;}
+
   footer{padding:34px 0; font-size:0.8rem; color:var(--ink-soft); display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;}
 
   @media (max-width: 860px){
     .hero-grid, .founder-grid, .contact-grid{grid-template-columns:1fr;}
     .founder-photo{margin:0 auto 8px;}
     .offer-grid{grid-template-columns:1fr;}
+    .corporate-block{grid-template-columns:1fr; gap:24px;}
+    .corporate-lists{grid-template-columns:1fr;}
     .testimonial-grid{grid-template-columns:1fr;}
+    .badges-row{gap:32px;}
+    .badge-strip{height:92px;}
+    .badge-seal{height:86px;}
     section{padding:70px 0;}
     .nav-links{
       position:fixed; inset:0 0 auto 0; top:63px; background:var(--cream);
@@ -213,6 +274,13 @@
   </nav>
 </header>
 
+<!-- INTRO QUESTIONS -->
+<section class="intro-q" aria-label="Questions many of us carry">
+  <div class="wrap intro-q-wrap">
+    <p class="intro-questions pos-0" id="introQuestions" aria-live="off">Where is home?</p>
+  </div>
+</section>
+
 <main id="top">
 
   <!-- HERO -->
@@ -226,6 +294,9 @@
           <a href="#contact" class="btn btn-primary">Book a free consultation</a>
           <a href="#story" class="btn btn-ghost">How it works</a>
         </div>
+      </div>
+      <div class="hero-photo">
+        <img src="images/jenny-portrait.jpg" alt="Jenny, Founder of The Leap Lab">
       </div>
     </div>
   </section>
@@ -260,15 +331,97 @@
       <span class="eyebrow">Work With Me</span>
       <h2 style="font-size:2.1rem; margin-bottom:44px;">Ways to work together</h2>
       <div class="offer-grid">
+
         <div class="offer-card">
-          <h3>Individuals</h3>
-          <p>One-to-one coaching for global minds seeking balance, clarity, and a more authentic way of living and leading — wherever in the world you are.</p>
-          <a href="#contact" class="btn btn-ghost">Book a 1:1 session</a>
+          <span class="offer-format">Clarity Session · 90 min</span>
+          <h3>Gain Clarity</h3>
+          <p>For when you feel stuck, overwhelmed or at a crossroads. Untangle what's going on, reconnect with what matters most, and leave with clarity and concrete next steps.</p>
+          <details>
+            <summary>Ideal for</summary>
+            <ul>
+              <li>Life transitions</li>
+              <li>Big decisions</li>
+              <li>Feeling lost or overwhelmed</li>
+              <li>Finding your next step</li>
+            </ul>
+          </details>
+          <a href="#contact" class="btn btn-ghost">Book a Clarity Session</a>
         </div>
+
         <div class="offer-card">
-          <h3>Corporates</h3>
-          <p>Coaching support for teams and leaders navigating mobility, relocation, and change — helping global talent thrive, not just adapt.</p>
-          <a href="#contact" class="btn btn-ghost">Request a customized offer</a>
+          <span class="offer-format">Transformation Journey · 5-session package</span>
+          <h3>Create Lasting Change</h3>
+          <p>Real change takes more than one conversation. Across five sessions we'll uncover patterns, build new perspectives and create lasting change in the areas that matter most.</p>
+          <details>
+            <summary>Possible outcomes</summary>
+            <ul>
+              <li>Greater confidence</li>
+              <li>Better decisions</li>
+              <li>Stronger relationships</li>
+              <li>Feeling more like yourself again</li>
+            </ul>
+          </details>
+          <a href="#contact" class="btn btn-ghost">Start your journey</a>
+        </div>
+
+        <div class="offer-card">
+          <span class="offer-format">Home Away From Home · Signature 3-month programme</span>
+          <h3>Find Home</h3>
+          <p>A soft landing for global minds. Designed for internationals, expats and anyone navigating life between cultures.</p>
+          <details>
+            <summary>Details</summary>
+            <span class="detail-label">Includes</span>
+            <ul>
+              <li>6 live coaching sessions (every two weeks)</li>
+              <li>Reflection exercises &amp; practical tools</li>
+              <li>WhatsApp support between sessions</li>
+              <li>Personal resources tailored to your journey</li>
+            </ul>
+            <span class="detail-label">We explore topics such as</span>
+            <ul>
+              <li>Creating a sense of home</li>
+              <li>Identity &amp; belonging</li>
+              <li>Relationships abroad</li>
+              <li>Purpose &amp; direction</li>
+              <li>Building a life that truly feels like yours</li>
+            </ul>
+          </details>
+          <a href="#contact" class="btn btn-ghost">Learn more</a>
+        </div>
+
+      </div>
+
+      <span class="corporate-label">Corporates</span>
+      <div class="corporate-block">
+        <div class="corporate-text">
+          <span class="offer-format">Home Away From Home · Workshop Series for International Teams</span>
+          <h3>Build Belonging at Work</h3>
+          <p>Helping international employees feel connected, confident and at home — so they can thrive personally and professionally.</p>
+          <a href="#contact" class="btn btn-ghost">Let's talk</a>
+        </div>
+        <div class="corporate-lists">
+          <div>
+            <span class="detail-label">Example workshop topics</span>
+            <ul>
+              <li>Values across cultures</li>
+              <li>Building belonging</li>
+              <li>Identity &amp; transition</li>
+              <li>The science of home</li>
+              <li>Memory &amp; scent ("The smell of home")</li>
+              <li>Navigating change</li>
+              <li>Psychological safety</li>
+              <li>Connection &amp; community</li>
+            </ul>
+          </div>
+          <div>
+            <span class="detail-label">Formats</span>
+            <ul>
+              <li>Keynotes</li>
+              <li>Half-day workshops</li>
+              <li>Multi-session programmes</li>
+              <li>Leadership sessions</li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -277,7 +430,9 @@
   <!-- FOUNDER -->
   <section id="founder" class="section-alt">
     <div class="wrap founder-grid">
-      <div class="founder-photo">Founder photo —<br>to be added</div>
+      <div class="founder-photo">
+        <img src="images/jenny-portrait.jpg" alt="Jenny, Founder of The Leap Lab">
+      </div>
       <div class="founder-body">
         <span class="eyebrow">About the Founder</span>
         <h3>Hi, I'm Jenny.</h3>
@@ -324,6 +479,18 @@
     </div>
   </section>
 
+  <!-- CREDENTIALS -->
+  <section id="credentials" class="section-alt">
+    <div class="wrap" style="text-align:center;">
+      <span class="eyebrow">Credentials</span>
+      <h2 style="font-size:1.7rem; margin-bottom:40px;">Certified &amp; Accredited</h2>
+      <div class="badges-row">
+        <img class="badge-strip" src="images/badges-icf-eqa-animas.png" alt="ICF Level 2 Coaching Education, EMCC Global EQA Senior Practitioner, Animas Accredited Diploma in Coach Training">
+        <img class="badge-seal" src="images/badge-animas-seal.png" alt="Animas Centre for Coaching — Accredited Transformative Coach">
+      </div>
+    </div>
+  </section>
+
   <!-- CONTACT -->
   <section id="contact">
     <div class="wrap contact-grid">
@@ -354,6 +521,36 @@
   const links = document.getElementById('navLinks');
   toggle.addEventListener('click', () => links.classList.toggle('open'));
   links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+
+  // Intro questions: cycling crossfade across 3 staggered positions
+  const QUESTIONS = [
+    'Where is home?',
+    'How do you land?',
+    'Should I stay or should I go?',
+    'Who am I becoming?',
+    'What comes next?',
+    'How do I belong?',
+    'Where are my people?'
+  ];
+  const POSITIONS = ['pos-0', 'pos-1', 'pos-2'];
+  const introEl = document.getElementById('introQuestions');
+
+  if (introEl) {
+    let qIndex = 0;
+    introEl.textContent = QUESTIONS[0];
+    requestAnimationFrame(() => introEl.classList.add('visible'));
+
+    setInterval(() => {
+      introEl.classList.remove('visible');
+      setTimeout(() => {
+        qIndex = (qIndex + 1) % QUESTIONS.length;
+        introEl.textContent = QUESTIONS[qIndex];
+        POSITIONS.forEach(p => introEl.classList.remove(p));
+        introEl.classList.add(POSITIONS[qIndex % POSITIONS.length]);
+        requestAnimationFrame(() => introEl.classList.add('visible'));
+      }, 650);
+    }, 2800);
+  }
 </script>
 
 </body>
