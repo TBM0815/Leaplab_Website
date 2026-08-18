@@ -98,24 +98,58 @@
   .btn-ghost{background:transparent; color:var(--ink);}
   .btn-ghost:hover{background:var(--ink); color:var(--cream);}
 
-  /* Intro questions */
-  .intro-q{background:var(--cream-soft);}
-  .intro-q-wrap{position:relative; min-height:54vh;}
+  /* Intro questions — transformational staircase */
+  .intro-q{
+    position:relative;
+    padding:0;
+    min-height:72vh;
+    background-color:var(--cream-soft);
+    background-image:url('images/transformational-stairs.png');
+    background-size:cover;
+    background-position:center center;
+    overflow:hidden;
+  }
+  .intro-q::after{
+    content:'';
+    position:absolute; inset:0;
+    background:linear-gradient(90deg, rgba(244,234,217,0.16) 0%, rgba(244,234,217,0.05) 42%, rgba(244,234,217,0) 68%);
+    pointer-events:none;
+  }
+  .intro-q-wrap{position:relative; min-height:72vh; z-index:1;}
   .intro-questions{
-    position:absolute; margin:0; max-width:56%;
-    font-size:clamp(1.5rem, 3.4vw, 2.5rem); font-style:italic; font-weight:400;
-    color:var(--ink); opacity:0; transition:opacity 1.1s ease;
+    position:absolute; margin:0; max-width:min(43%, 520px);
+    font-size:clamp(1.8rem, 3.8vw, 3.25rem); font-style:italic; font-weight:400;
+    color:var(--ink); opacity:0; transition:opacity 0.6s ease;
+    text-shadow:0 1px 0 rgba(255,253,249,0.18);
   }
   .intro-questions.visible{opacity:1;}
-  .intro-questions.pos-0{top:8%; left:0; text-align:left;}
-  .intro-questions.pos-1{top:42%; left:50%; transform:translateX(-50%); text-align:center;}
-  .intro-questions.pos-2{top:76%; right:0; left:auto; text-align:right;}
+  /* Keep the changing questions on the open architectural wall, away from the stairs. */
+  .intro-questions.row-0{top:14%;}
+  .intro-questions.row-1{top:40%;}
+  .intro-questions.row-2{top:66%;}
+  .intro-questions.col-0{left:2%; text-align:left;}
+  .intro-questions.col-1{left:31%; transform:translateX(-50%); text-align:left;}
+  .intro-questions.col-2{left:2%; right:auto; text-align:left;}
   @media (max-width: 760px){
-    .intro-q-wrap{min-height:auto; padding:56px 0;}
-    .intro-questions{
-      position:static; max-width:100%; text-align:center !important;
-      transform:none !important; margin:0 auto;
+    .intro-q{
+      min-height:68vh;
+      background-position:62% center;
     }
+    .intro-q::after{
+      background:linear-gradient(90deg, rgba(244,234,217,0.24) 0%, rgba(244,234,217,0.08) 58%, rgba(244,234,217,0) 100%);
+    }
+    .intro-q-wrap{min-height:68vh; padding:0 0;}
+    .intro-questions{
+      position:absolute; max-width:72%;
+      font-size:clamp(1.75rem, 8vw, 2.45rem);
+      text-align:left !important; transform:none !important;
+    }
+    .intro-questions.row-0{top:13%;}
+    .intro-questions.row-1{top:42%;}
+    .intro-questions.row-2{top:69%;}
+    .intro-questions.col-0,
+    .intro-questions.col-1,
+    .intro-questions.col-2{left:6%; right:auto;}
   }
 
   /* Hero */
@@ -154,7 +188,12 @@
   .testimonial-tag{font-size:0.68rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--tan); margin-bottom:14px; display:block;}
 
   /* Work with me */
-  .offer-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-bottom:56px;}
+  .individuals-block, .corporates-block{
+    background:var(--cream-soft); border:1px solid var(--line); border-radius:var(--radius);
+    padding:36px; margin-bottom:44px;
+  }
+  .corporates-block{margin-bottom:0;}
+  .offer-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
   .offer-card{
     background:var(--white); border:1px solid var(--line); padding:36px 30px;
     border-radius:var(--radius); display:flex; flex-direction:column;
@@ -163,6 +202,8 @@
     font-size:0.72rem; text-transform:uppercase; letter-spacing:0.06em;
     color:var(--tan); font-weight:600; margin-bottom:10px; display:block;
   }
+  .offer-format .accent{color:var(--coral);}
+  .offer-card.signature{border:2px solid var(--coral);}
   .offer-card h3{font-size:1.4rem; margin-bottom:14px;}
   .offer-card p{color:var(--ink-soft); margin-bottom:20px;}
   .offer-card .btn{margin-top:auto;}
@@ -176,7 +217,7 @@
   }
   .detail-label:first-child{margin-top:0;}
 
-  .corporate-label{font-size:0.72rem; text-transform:uppercase; letter-spacing:0.22em; color:var(--tan); font-weight:600; margin-bottom:16px; display:block;}
+  .group-label{font-size:0.72rem; text-transform:uppercase; letter-spacing:0.22em; color:var(--tan); font-weight:600; margin-bottom:16px; display:block;}
   .corporate-block{
     display:grid; grid-template-columns:1fr 1fr; gap:44px;
     background:var(--white); border:1px solid var(--line); padding:42px 38px; border-radius:var(--radius);
@@ -277,7 +318,7 @@
 <!-- INTRO QUESTIONS -->
 <section class="intro-q" aria-label="Questions many of us carry">
   <div class="wrap intro-q-wrap">
-    <p class="intro-questions pos-0" id="introQuestions" aria-live="off">Where is home?</p>
+    <p class="intro-questions row-0 col-0" id="introQuestions" aria-live="off">Where is home?</p>
   </div>
 </section>
 
@@ -330,6 +371,9 @@
     <div class="wrap">
       <span class="eyebrow">Work With Me</span>
       <h2 style="font-size:2.1rem; margin-bottom:44px;">Ways to work together</h2>
+
+      <div class="individuals-block">
+      <span class="group-label">Individuals</span>
       <div class="offer-grid">
 
         <div class="offer-card">
@@ -364,8 +408,8 @@
           <a href="#contact" class="btn btn-ghost">Start your journey</a>
         </div>
 
-        <div class="offer-card">
-          <span class="offer-format">Home Away From Home · Signature 3-month programme</span>
+        <div class="offer-card signature">
+          <span class="offer-format">Home Away From Home · <span class="accent">Signature</span> 3-month programme</span>
           <h3>Find Home</h3>
           <p>A soft landing for global minds. Designed for internationals, expats and anyone navigating life between cultures.</p>
           <details>
@@ -390,8 +434,10 @@
         </div>
 
       </div>
+      </div>
 
-      <span class="corporate-label">Corporates</span>
+      <div class="corporates-block">
+      <span class="group-label">Corporates</span>
       <div class="corporate-block">
         <div class="corporate-text">
           <span class="offer-format">Home Away From Home · Workshop Series for International Teams</span>
@@ -423,6 +469,7 @@
             </ul>
           </div>
         </div>
+      </div>
       </div>
     </div>
   </section>
@@ -522,34 +569,89 @@
   toggle.addEventListener('click', () => links.classList.toggle('open'));
   links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
 
-  // Intro questions: cycling crossfade across 3 staggered positions
+  // Intro questions: fast cycling crossfade, randomized order, 3x3 grid of positions
   const QUESTIONS = [
+    // Home & Identity
     'Where is home?',
+    "What if home isn't a place?",
+    'Who are you becoming?',
+    'Who are you beyond your job?',
+    'Where do you belong?',
+    'What are you holding onto?',
+    'What are you ready to leave behind?',
+    // Transition & Arrival
     'How do you land?',
+    "What's next?",
+    'How do you start over?',
+    'How do you build a life from scratch?',
+    'What comes after the move?',
+    'How do you feel at home again?',
+    'What do you do when everything feels unfamiliar?',
+    // Decisions
     'Should I stay or should I go?',
-    'Who am I becoming?',
-    'What comes next?',
-    'How do I belong?',
-    'Where are my people?'
+    'Is it time for a new chapter?',
+    "What if there's no perfect decision?",
+    'What are you waiting for?',
+    "What would you choose if fear wasn't deciding?",
+    "What's keeping you stuck?",
+    // Purpose & Growth
+    "What's missing?",
+    'What truly matters now?',
+    'What do you want this chapter to be about?',
+    'What would make this move worth it?',
+    'What kind of life are you building?',
+    'What does flourishing look like for you?',
+    // Relationships
+    'How do you make real friends?',
+    'How do you stay connected?',
+    'How do you create community?',
+    'How do you feel less alone?'
   ];
-  const POSITIONS = ['pos-0', 'pos-1', 'pos-2'];
+  const ROWS = ['row-0', 'row-1', 'row-2'];
+  const COLS = ['col-0', 'col-1', 'col-2'];
+  const POSITIONS = ROWS.flatMap(r => COLS.map(c => `${r} ${c}`));
   const introEl = document.getElementById('introQuestions');
 
+  function shuffle(arr){
+    const a = arr.slice();
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+
   if (introEl) {
-    let qIndex = 0;
-    introEl.textContent = QUESTIONS[0];
+    let order = shuffle(QUESTIONS.map((_, i) => i));
+    let ptr = 0;
+    let lastPos = 'row-0 col-0';
+
+    function nextQuestionIndex(){
+      if (ptr >= order.length) {
+        order = shuffle(QUESTIONS.map((_, i) => i));
+        ptr = 0;
+      }
+      return order[ptr++];
+    }
+
+    function nextPosition(){
+      let p;
+      do { p = POSITIONS[Math.floor(Math.random() * POSITIONS.length)]; } while (p === lastPos);
+      lastPos = p;
+      return p;
+    }
+
+    introEl.textContent = QUESTIONS[nextQuestionIndex()];
     requestAnimationFrame(() => introEl.classList.add('visible'));
 
     setInterval(() => {
       introEl.classList.remove('visible');
       setTimeout(() => {
-        qIndex = (qIndex + 1) % QUESTIONS.length;
-        introEl.textContent = QUESTIONS[qIndex];
-        POSITIONS.forEach(p => introEl.classList.remove(p));
-        introEl.classList.add(POSITIONS[qIndex % POSITIONS.length]);
+        introEl.textContent = QUESTIONS[nextQuestionIndex()];
+        introEl.className = 'intro-questions ' + nextPosition();
         requestAnimationFrame(() => introEl.classList.add('visible'));
-      }, 650);
-    }, 2800);
+      }, 450);
+    }, 1700);
   }
 </script>
 
