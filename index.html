@@ -154,12 +154,10 @@
 
   /* Hero */
   .hero{padding:100px 0 90px;}
-  .hero-grid{display:grid; grid-template-columns:1.05fr 0.95fr; gap:56px; align-items:center;}
+  .hero-grid{display:grid; grid-template-columns:1fr; gap:56px;}
   .hero h1{font-size:clamp(2.6rem, 5vw, 4.2rem); margin-bottom:26px;}
   .hero p.lead{font-size:1.12rem; color:var(--ink-soft); max-width:46ch; margin-bottom:36px;}
   .hero-ctas{display:flex; gap:16px; flex-wrap:wrap;}
-  .hero-photo{aspect-ratio:4/5; overflow:hidden; border-radius:var(--radius);}
-  .hero-photo img{width:100%; height:100%; object-fit:cover; object-position:50% 18%; display:block;}
 
   /* Story */
   .story-text{
@@ -257,6 +255,10 @@
   .contact-note{margin-top:14px; font-size:0.78rem; color:rgba(244,234,217,0.55);}
 
   /* Credentials */
+  .credentials-sub{
+    font-style:italic; font-size:0.9rem; color:var(--ink-soft);
+    max-width:520px; margin:0 auto 40px;
+  }
   .badges-row{display:flex; align-items:center; justify-content:center; gap:52px; flex-wrap:wrap;}
   .badge-strip{height:140px; width:auto;}
   .badge-seal{height:130px; width:auto;}
@@ -335,9 +337,6 @@
           <a href="#contact" class="btn btn-primary">Book a free consultation</a>
           <a href="#story" class="btn btn-ghost">How it works</a>
         </div>
-      </div>
-      <div class="hero-photo">
-        <img src="images/jenny-portrait.jpg" alt="Jenny, Founder of The Leap Lab">
       </div>
     </div>
   </section>
@@ -530,7 +529,8 @@
   <section id="credentials" class="section-alt">
     <div class="wrap" style="text-align:center;">
       <span class="eyebrow">Credentials</span>
-      <h2 style="font-size:1.7rem; margin-bottom:40px;">Certified &amp; Accredited</h2>
+      <h2 style="font-size:1.7rem; margin-bottom:14px;">Certified &amp; Internationally Accredited</h2>
+      <p class="credentials-sub">Accredited Transformative Coach, Training accredited by ICF, EMCC Global &amp; Association for Coaching</p>
       <div class="badges-row">
         <img class="badge-strip" src="images/badges-icf-eqa-animas.png" alt="ICF Level 2 Coaching Education, EMCC Global EQA Senior Practitioner, Animas Accredited Diploma in Coach Training">
         <img class="badge-seal" src="images/badge-animas-seal.png" alt="Animas Centre for Coaching — Accredited Transformative Coach">
@@ -549,9 +549,7 @@
         <div class="contact-note">Booking-Link (z.B. Acuity/Calendly) folgt — aktuell Platzhalter.</div>
       </div>
       <div class="contact-emails">
-        <p>General inquiries<br><a href="mailto:hello@theleaplab.com">hello@theleaplab.com</a></p>
-        <br>
-        <p>Corporate &amp; custom offers<br><a href="mailto:info@theleaplab.com">info@theleaplab.com</a></p>
+        <p>Get in touch<br><a href="mailto:hello@theleaplab.com">hello@theleaplab.com</a></p>
       </div>
     </div>
   </section>
